@@ -1,40 +1,66 @@
 #include <cmath>
+#include <cstdlib>
+#include <ctime>
 #include "desenha.h"
 #include "QPen"
 #include "QPainter"
 #include "QBrush"
 #include "QImage"
+
 #define CONVERTE_GRAUS_P_RADIANO 0.0174532925
 
 Desenha::Desenha(QWidget *parent) : QWidget(parent)
 {
+    srand(time(NULL));
     t=0;
     animacaoAtiva = false;
     velocidadeX = 0;
     velocidadeY = 0;
-    alvoX = 500;
-    alvoY = 100;
+    //TODO-LER RECORDE
     startTimer(1);
+
+    //atribuições testes
+    alvoX = 500;
+    alvoY = 80;
+    balaX = 1000;
+    balaY = 100;
+    pontuacaoRecorde = 300;
+    vidasRestantes = 3;
 }
 void Desenha::timerEvent(QTimerEvent *e){
     if(animacaoAtiva){
-        t=t+0.1;
+        //Desabilitar botao de lancar
+        desativar_botao();
+
+        //Calculo da nova posicao da bala
+        t=t+0.2;
         balaX = 80 + velocidadeX*t;
-        display_posX(balaX);
         balaY = 100 + velocidadeY*t - 5*pow(t,2);
-        display_posY(balaY);
+
+        //Checa se acertou o Alvo
         if(balaX<=alvoX+60 && balaX>=alvoX && balaY>=alvoY-80 && balaY<=alvoY){
-            display_status("Acertou!!");
+            display_status("Acertou! <+100 pontos>");
             animacaoAtiva = false;
+            pontuacaoAtual+= 100;
+            display_pontuacao(pontuacaoAtual);
         }
+        //Checa se chegou nos limites da fase
         if(balaX>1000 || balaY<0){
-            display_status("Não Acertou!!");
+            vidasRestantes--;
+            if(vidasRestantes<=-1){
+                display_status("Game Over!");
+                if(pontuacaoAtual>pontuacaoRecorde){
+                    //TODO-ESCREVER RECORDE
+                }
+            }else{
+                display_status("Não Acertou!");
+                display_vidas(vidasRestantes);
+            }
             animacaoAtiva = false;
         }
         repaint();
     }else{
-        balaX=80;
-        balaY=100;
+        ativar_botao();
     }
 }
 void Desenha::paintEvent(QPaintEvent *e){
@@ -62,14 +88,15 @@ void Desenha::muda_angulo(QString x){
     anguloChange = x.toDouble();
 }
 void Desenha::lancar(){
+    //ativar animação de lançamento
     animacaoAtiva = true;
     t=0;
-    balaX=80;
-    balaY=100;
+    //Definir velocidades em cada eixo apartir do angulo e da velocidade total
     velocidadeX = velocidadeChange*cos(anguloChange*CONVERTE_GRAUS_P_RADIANO);
-    display_velocidadeX(velocidadeX);
     velocidadeY = velocidadeChange*sin(anguloChange*CONVERTE_GRAUS_P_RADIANO);
-    display_velocidadeY(velocidadeY);
+}
+void Desenha::iniciarJogo(){
+
 }
 
 

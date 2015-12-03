@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1300</width>
-    <height>685</height>
+    <width>1233</width>
+    <height>673</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,9 +28,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>530</y>
+      <y>520</y>
       <width>171</width>
-      <height>81</height>
+      <height>61</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -72,21 +72,14 @@
        </item>
       </layout>
      </item>
-     <item>
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string>Lançar</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>350</y>
-      <width>111</width>
+      <x>20</x>
+      <y>150</y>
+      <width>171</width>
       <height>61</height>
      </rect>
     </property>
@@ -101,14 +94,17 @@
     <property name="text">
      <string>Status !!</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>450</y>
-      <width>140</width>
-      <height>61</height>
+      <x>20</x>
+      <y>460</y>
+      <width>171</width>
+      <height>51</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -145,8 +141,8 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>330</y>
+      <x>70</x>
+      <y>430</y>
       <width>47</width>
       <height>13</height>
      </rect>
@@ -158,8 +154,8 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>330</y>
+      <x>140</x>
+      <y>430</y>
       <width>47</width>
       <height>13</height>
      </rect>
@@ -168,13 +164,93 @@
      <string>TextLabel</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>230</y>
+      <width>131</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Iniciar Novo Jogo</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>590</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Lançar</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>171</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string>Recorde</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLCDNumber" name="lcdNumber_6"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Pontuação Atual</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLCDNumber" name="lcdNumber_3"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
+       <item>
+        <widget class="QLabel" name="label_11">
+         <property name="text">
+          <string>Vidas Restantes</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLCDNumber" name="lcdNumber_7"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1300</width>
+     <width>1233</width>
      <height>21</height>
     </rect>
    </property>
@@ -202,6 +278,11 @@
     <signal>display_status(QString)</signal>
     <signal>display_posX(double)</signal>
     <signal>display_posY(double)</signal>
+    <signal>desativar_botao()</signal>
+    <signal>ativar_botao()</signal>
+    <signal>display_pontuacao(int)</signal>
+    <signal>display_recorde(int)</signal>
+    <signal>display_vidas(int)</signal>
     <slot>muda_velocidade(QString)</slot>
     <slot>muda_angulo(QString)</slot>
     <slot>lancar()</slot>
@@ -301,8 +382,8 @@
      <y>438</y>
     </hint>
     <hint type="destinationlabel">
-     <x>91</x>
-     <y>407</y>
+     <x>101</x>
+     <y>240</y>
     </hint>
    </hints>
   </connection>
@@ -317,8 +398,8 @@
      <y>312</y>
     </hint>
     <hint type="destinationlabel">
-     <x>135</x>
-     <y>371</y>
+     <x>145</x>
+     <y>475</y>
     </hint>
    </hints>
   </connection>
@@ -333,8 +414,72 @@
      <y>271</y>
     </hint>
     <hint type="destinationlabel">
-     <x>52</x>
-     <y>368</y>
+     <x>92</x>
+     <y>475</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>widget</sender>
+   <signal>desativar_botao()</signal>
+   <receiver>pushButton</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>253</x>
+     <y>635</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>111</x>
+     <y>639</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>widget</sender>
+   <signal>ativar_botao()</signal>
+   <receiver>pushButton</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>332</x>
+     <y>634</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>109</x>
+     <y>638</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>widget</sender>
+   <signal>display_pontuacao(int)</signal>
+   <receiver>lcdNumber_3</receiver>
+   <slot>display(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>223</x>
+     <y>95</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>183</x>
+     <y>95</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>widget</sender>
+   <signal>display_vidas(int)</signal>
+   <receiver>lcdNumber_7</receiver>
+   <slot>display(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>217</x>
+     <y>141</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>179</x>
+     <y>143</y>
     </hint>
    </hints>
   </connection>

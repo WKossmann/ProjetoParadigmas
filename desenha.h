@@ -17,6 +17,9 @@ private:
     double velocidadeY;
     double velocidadeChange;
     double anguloChange;
+    int vidasRestantes;
+    int pontuacaoAtual;
+    int pontuacaoRecorde;
 public:
     explicit Desenha(QWidget *parent = 0);
     void timerEvent(QTimerEvent *e);
@@ -27,10 +30,16 @@ signals:
     void display_status(QString);
     void display_posX(double);
     void display_posY(double);
+    void desativar_botao();
+    void ativar_botao();
+    void display_pontuacao(int);
+    void display_recorde(int);
+    void display_vidas(int);
 public slots:
     void muda_velocidade(QString x);
     void muda_angulo(QString x);
     void lancar();
+    void iniciarJogo();
 };
 
 #endif // DESENHA_H
