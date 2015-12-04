@@ -138,32 +138,6 @@
      </item>
     </layout>
    </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>430</y>
-      <width>47</width>
-      <height>13</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>430</y>
-      <width>47</width>
-      <height>13</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
@@ -185,6 +159,9 @@
       <width>81</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>Lançar</string>
@@ -273,11 +250,9 @@
    <header>desenha.h</header>
    <container>1</container>
    <slots>
-    <signal>display_velocidadeX(double)</signal>
-    <signal>display_velocidadeY(double)</signal>
+    <signal>display_posicaoX(double)</signal>
+    <signal>display_posicaoY(double)</signal>
     <signal>display_status(QString)</signal>
-    <signal>display_posX(double)</signal>
-    <signal>display_posY(double)</signal>
     <signal>desativar_botao()</signal>
     <signal>ativar_botao()</signal>
     <signal>display_pontuacao(int)</signal>
@@ -286,6 +261,7 @@
     <slot>muda_velocidade(QString)</slot>
     <slot>muda_angulo(QString)</slot>
     <slot>lancar()</slot>
+    <slot>iniciarJogo()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -299,7 +275,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>168</x>
-     <y>579</y>
+     <y>571</y>
     </hint>
     <hint type="destinationlabel">
      <x>231</x>
@@ -330,8 +306,8 @@
    <slot>lancar()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>159</x>
-     <y>627</y>
+     <x>150</x>
+     <y>630</y>
     </hint>
     <hint type="destinationlabel">
      <x>248</x>
@@ -341,7 +317,7 @@
   </connection>
   <connection>
    <sender>widget</sender>
-   <signal>display_velocidadeY(double)</signal>
+   <signal>display_posicaoY(double)</signal>
    <receiver>lcdNumber_2</receiver>
    <slot>display(double)</slot>
    <hints>
@@ -352,70 +328,6 @@
     <hint type="destinationlabel">
      <x>167</x>
      <y>526</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>widget</sender>
-   <signal>display_velocidadeX(double)</signal>
-   <receiver>lcdNumber</receiver>
-   <slot>display(double)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>210</x>
-     <y>367</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>78</x>
-     <y>520</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>widget</sender>
-   <signal>display_status(QString)</signal>
-   <receiver>label_4</receiver>
-   <slot>setText(QString)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>226</x>
-     <y>438</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>101</x>
-     <y>240</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>widget</sender>
-   <signal>display_posY(double)</signal>
-   <receiver>label_6</receiver>
-   <slot>setNum(double)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>225</x>
-     <y>312</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>145</x>
-     <y>475</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>widget</sender>
-   <signal>display_posX(double)</signal>
-   <receiver>label_5</receiver>
-   <slot>setNum(double)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>220</x>
-     <y>271</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>92</x>
-     <y>475</y>
     </hint>
    </hints>
   </connection>
@@ -480,6 +392,70 @@
     <hint type="destinationlabel">
      <x>179</x>
      <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>widget</sender>
+   <signal>display_posicaoX(double)</signal>
+   <receiver>lcdNumber</receiver>
+   <slot>display(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>217</x>
+     <y>362</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>61</x>
+     <y>525</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>widget</receiver>
+   <slot>iniciarJogo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>166</x>
+     <y>271</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>236</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>widget</sender>
+   <signal>display_status(QString)</signal>
+   <receiver>label_4</receiver>
+   <slot>setText(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>215</x>
+     <y>218</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>167</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>widget</sender>
+   <signal>display_recorde(int)</signal>
+   <receiver>lcdNumber_6</receiver>
+   <slot>display(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>218</x>
+     <y>56</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>177</x>
+     <y>57</y>
     </hint>
    </hints>
   </connection>

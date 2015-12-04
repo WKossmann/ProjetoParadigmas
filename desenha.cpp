@@ -1,6 +1,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
+//#include <fstream>
 #include "desenha.h"
 #include "QPen"
 #include "QPainter"
@@ -12,20 +13,25 @@
 Desenha::Desenha(QWidget *parent) : QWidget(parent)
 {
     srand(time(NULL));
-    t=0;
     animacaoAtiva = false;
-    velocidadeX = 0;
-    velocidadeY = 0;
     //TODO-LER RECORDE
     startTimer(1);
 
-    //atribuições testes
-    alvoX = 500;
-    alvoY = 80;
+    //Inicia uma jogada no inicio
+    alvoX = rand()%500 + 450;
+    alvoY = rand()%500 + 100;
     balaX = 1000;
     balaY = 100;
-    pontuacaoRecorde = 300;
     vidasRestantes = 3;
+    pontuacaoAtual = 0;
+
+    display_vidas(vidasRestantes);
+    display_pontuacao(pontuacaoAtual);
+    display_posicaoX(alvoX);
+    display_posicaoY(alvoY);
+
+    //atribuições testes
+    pontuacaoRecorde = 300;
 }
 void Desenha::timerEvent(QTimerEvent *e){
     if(animacaoAtiva){
@@ -43,24 +49,29 @@ void Desenha::timerEvent(QTimerEvent *e){
             animacaoAtiva = false;
             pontuacaoAtual+= 100;
             display_pontuacao(pontuacaoAtual);
+            alvoX = rand()%500 + 450;
+            alvoY = rand()%500 + 100;
+            display_posicaoX(alvoX);
+            display_posicaoY(alvoY);
+            ativar_botao();
         }
         //Checa se chegou nos limites da fase
         if(balaX>1000 || balaY<0){
             vidasRestantes--;
             if(vidasRestantes<=-1){
                 display_status("Game Over!");
+                desativar_botao();
                 if(pontuacaoAtual>pontuacaoRecorde){
                     //TODO-ESCREVER RECORDE
                 }
             }else{
                 display_status("Não Acertou!");
                 display_vidas(vidasRestantes);
+                ativar_botao();
             }
             animacaoAtiva = false;
         }
         repaint();
-    }else{
-        ativar_botao();
     }
 }
 void Desenha::paintEvent(QPaintEvent *e){
@@ -91,12 +102,27 @@ void Desenha::lancar(){
     //ativar animação de lançamento
     animacaoAtiva = true;
     t=0;
-    //Definir velocidades em cada eixo apartir do angulo e da velocidade total
+
+    //Definir velocidades em cada eixo a partir do angulo e da velocidade total
     velocidadeX = velocidadeChange*cos(anguloChange*CONVERTE_GRAUS_P_RADIANO);
     velocidadeY = velocidadeChange*sin(anguloChange*CONVERTE_GRAUS_P_RADIANO);
 }
 void Desenha::iniciarJogo(){
+    alvoX = rand()%500 + 450;
+    alvoY = rand()%500 + 100;
+    balaX = 1000;
+    balaY = 100;
+    vidasRestantes = 3;
+    pontuacaoAtual = 0;
 
+    display_vidas(vidasRestantes);
+    display_pontuacao(pontuacaoAtual);
+    display_posicaoX(alvoX);
+    display_posicaoY(alvoY);
+
+    ativar_botao();
+
+    repaint();
 }
 
 

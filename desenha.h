@@ -25,11 +25,9 @@ public:
     void timerEvent(QTimerEvent *e);
     void paintEvent(QPaintEvent *e);
 signals:
-    void display_velocidadeX(double);
-    void display_velocidadeY(double);
+    void display_posicaoX(double);
+    void display_posicaoY(double);
     void display_status(QString);
-    void display_posX(double);
-    void display_posY(double);
     void desativar_botao();
     void ativar_botao();
     void display_pontuacao(int);
