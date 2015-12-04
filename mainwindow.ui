@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1233</width>
-    <height>673</height>
+    <height>645</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -113,7 +113,7 @@
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>VelocidadeX</string>
+          <string>Posição X</string>
          </property>
         </widget>
        </item>
@@ -127,7 +127,7 @@
        <item>
         <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>VelocidadeY</string>
+          <string>Posição Y</string>
          </property>
         </widget>
        </item>
@@ -167,7 +167,7 @@
      <string>Lançar</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -221,16 +221,6 @@
      </item>
     </layout>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1233</width>
-     <height>21</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

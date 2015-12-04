@@ -14,7 +14,7 @@ using namespace std;
 Desenha::Desenha(QWidget *parent) : QWidget(parent)
 {
     srand(time(NULL));
-    startTimer(10);
+    startTimer(10   );
     animacaoAtiva = false;
 
     //Ler Recorde do arquivo:

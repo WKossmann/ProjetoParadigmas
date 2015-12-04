@@ -9,12 +9,9 @@ class Desenha : public QWidget
 private:
     bool animacaoAtiva;
     double t;
-    double balaX;
-    double balaY;
-    double alvoX;
-    double alvoY;
-    double velocidadeX;
-    double velocidadeY;
+    double balaX, balaY;
+    double alvoX, alvoY;
+    double velocidadeX, velocidadeY;
     double velocidadeChange;
     double anguloChange;
     int vidasRestantes;
