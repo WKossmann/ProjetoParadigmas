@@ -14,7 +14,7 @@ using namespace std;
 Desenha::Desenha(QWidget *parent) : QWidget(parent)
 {
     srand(time(NULL));
-    startTimer(10);
+    startTimer(1);
     animacaoAtiva = false;
 
     //Ler Recorde do arquivo:
@@ -33,7 +33,7 @@ void Desenha::timerEvent(QTimerEvent *e){
         desativar_botao();
 
         //Calculo da nova posicao da bala
-        balaX += 1;
+        balaX += 5;
         t = (balaX-80)/(velocidadeX);
         balaY = 100 + velocidadeY*t - 5*pow(t,2);
 
@@ -43,7 +43,7 @@ void Desenha::timerEvent(QTimerEvent *e){
         balaY = 100 + velocidadeY*t - 5*pow(t,2);
         */
         //Checa se acertou o Alvo
-        if(balaX<=alvoX+60 && balaX>=alvoX && balaY>=alvoY-80 && balaY<=alvoY){
+        if(balaX<=alvoX+60 && balaX>=alvoX && balaY>=alvoY-65 && balaY<=alvoY+15){
             display_status("Acertou!\n <+100 pontos>");
             pontuacaoAtual+= 100;
 
@@ -114,21 +114,37 @@ void Desenha::paintEvent(QPaintEvent *e){
     p.drawImage(balaX,height()-balaY,bala,0,0,20,20);
 }
 void Desenha::muda_velocidade(QString x){
+    //Grava em uma variavel auxiliar
     velocidadeChange = x.toDouble();
 }
 void Desenha::muda_angulo(QString x){
+    //Grava em uma variavel auxiliar
     anguloChange = x.toDouble();
 }
 void Desenha::lancar(){
     //Ativar animação de lançamento:
     animacaoAtiva = true;
     balaX = 80;
+    if(anguloChange==90){
+        anguloChange = 89;
+    }
 
-    //Definir velocidades em cada eixo a partir do angulo e da velocidade total:
+    //Definir velocidades em cada eixo a partir do angulo e da velocidade total guardada nas variaveis auxiliares:
     velocidadeX = velocidadeChange*cos(anguloChange*CONVERTE_GRAUS_P_RADIANO);
     velocidadeY = velocidadeChange*sin(anguloChange*CONVERTE_GRAUS_P_RADIANO);
 }
 void Desenha::iniciarJogo(){
+    //Checa se houve recorde na partida passada:
+    if(pontuacaoAtual>pontuacaoRecorde){
+        pontuacaoRecorde = pontuacaoAtual;
+
+        //Escreve no arquivo:
+        ofstream arquivoEscrita("recorde.txt");
+        if(arquivoEscrita.is_open()){
+            arquivoEscrita << pontuacaoRecorde;
+        }
+    }
+
     //Sortear local para o alvo:
     alvoX = rand()%500 + 450;
     alvoY = rand()%500 + 100;
