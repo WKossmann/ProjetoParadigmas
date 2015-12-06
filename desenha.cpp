@@ -27,7 +27,7 @@ Desenha::Desenha(QWidget *parent) : QWidget(parent)
         pontuacaoRecorde = 0;
     }
 }
-void Desenha::timerEvent(QTimerEvent *e){
+void Desenha::timerEvent(QPaintEvent *e){
     if(animacaoAtiva){
         //Desabilitar botao de lancar
         desativar_botao();

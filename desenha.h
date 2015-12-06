@@ -42,9 +42,9 @@ public:
     /*! Construtor do objeto, com algumas pré-configurações em sua estrutura*/
     explicit Desenha(QWidget *parent = 0);
     /*! Membro da classe que controla o timerEvent, disparado a cada 1ms */
-    void timerEvent();
+    void timerEvent(QPaintEvent *e);
     /*! Membro da classe que controla o desenho na tela */
-    void paintEvent();
+    void paintEvent(QPaintEvent *e);
 signals:
     /*! Sinal para mostrar a posição atual do alvo, em X */
     void display_posicaoX(double);
