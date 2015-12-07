@@ -42,7 +42,7 @@ public:
     /*! Construtor do objeto, com algumas pré-configurações em sua estrutura*/
     explicit Desenha(QWidget *parent = 0);
     /*! Membro da classe que controla o timerEvent, disparado a cada 1ms */
-    void timerEvent(QPaintEvent *e);
+    void timerEvent(QTimerEvent *e);
     /*! Membro da classe que controla o desenho na tela */
     void paintEvent(QPaintEvent *e);
 signals:

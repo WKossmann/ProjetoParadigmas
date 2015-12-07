@@ -14,7 +14,7 @@ using namespace std;
 Desenha::Desenha(QWidget *parent) : QWidget(parent)
 {
     srand(time(NULL));
-    startTimer(1);
+    startTimer(10);
     animacaoAtiva = false;
 
     //Ler Recorde do arquivo:
@@ -27,7 +27,7 @@ Desenha::Desenha(QWidget *parent) : QWidget(parent)
         pontuacaoRecorde = 0;
     }
 }
-void Desenha::timerEvent(QPaintEvent *e){
+void Desenha::timerEvent(QTimerEvent *e){
     if(animacaoAtiva){
         //Desabilitar botao de lancar
         desativar_botao();
@@ -42,6 +42,7 @@ void Desenha::timerEvent(QPaintEvent *e){
         balaX = 80 + velocidadeX*t;
         balaY = 100 + velocidadeY*t - 5*pow(t,2);
         */
+
         //Checa se acertou o Alvo
         if(balaX<=alvoX+60 && balaX>=alvoX && balaY>=alvoY-65 && balaY<=alvoY+15){
             display_status("Acertou!\n <+100 pontos>");
@@ -85,7 +86,7 @@ void Desenha::timerEvent(QPaintEvent *e){
                 display_recorde(pontuacaoRecorde);
             }else{
                 //Não chegou no GameOver
-                display_status("Não Acertou!");
+                display_status("Não Acertou!\n <-1 Vida>");
                 display_vidas(vidasRestantes);
                 ativar_botao();
             }
@@ -125,9 +126,9 @@ void Desenha::lancar(){
     //Ativar animação de lançamento:
     animacaoAtiva = true;
     balaX = 80;
-    if(anguloChange==90){
+    /*if(anguloChange==90){
         anguloChange = 89;
-    }
+    }*/
 
     //Definir velocidades em cada eixo a partir do angulo e da velocidade total guardada nas variaveis auxiliares:
     velocidadeX = velocidadeChange*cos(anguloChange*CONVERTE_GRAUS_P_RADIANO);
